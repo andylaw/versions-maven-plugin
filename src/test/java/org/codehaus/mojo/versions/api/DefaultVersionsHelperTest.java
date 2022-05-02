@@ -224,7 +224,7 @@ public class DefaultVersionsHelperTest extends PlexusTestCase
                                        new ArrayList(),
                                        new DefaultArtifactRepository( "", "", new DefaultRepositoryLayout() ),
                                        wagonManager, new Settings(), "", rulesUri, mock( Log.class ), mock( MavenSession.class ),
-                                       new DefaultPathTranslator());
+                                       new DefaultPathTranslator(), null);
         return helper;
     }
 

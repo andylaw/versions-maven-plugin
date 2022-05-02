@@ -44,6 +44,7 @@ import org.codehaus.mojo.versions.api.DefaultVersionsHelper;
 import org.codehaus.mojo.versions.api.PomHelper;
 import org.codehaus.mojo.versions.api.PropertyVersions;
 import org.codehaus.mojo.versions.api.VersionsHelper;
+import org.codehaus.mojo.versions.model.RuleSet;
 import org.codehaus.mojo.versions.recording.ChangeRecorder;
 import org.codehaus.mojo.versions.recording.ChangeRecorderNull;
 import org.codehaus.mojo.versions.recording.ChangeRecorderXML;
@@ -162,6 +163,14 @@ public abstract class AbstractVersionsUpdaterMojo
     private String rulesUri;
 
     /**
+     * Literal XML string of rules defined in the pom file configuration section.
+     *
+     * @since 2.11
+     */
+    @Parameter( property = "maven.version.ruleset" )
+    private RuleSet ruleset;
+
+    /**
      * Controls whether a backup pom should be created.
      *
      * @since 1.0-alpha-3
@@ -226,7 +235,7 @@ public abstract class AbstractVersionsUpdaterMojo
             helper = new DefaultVersionsHelper( artifactFactory, artifactResolver, artifactMetadataSource,
                                                 remoteArtifactRepositories, remotePluginRepositories, localRepository,
                                                 wagonManager, settings, serverId, rulesUri, getLog(), session,
-                                                pathTranslator );
+                                                pathTranslator, ruleset);
         }
         return helper;
     }

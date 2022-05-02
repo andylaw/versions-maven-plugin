@@ -193,6 +193,7 @@ public class DefaultVersionsHelper
      * @param mavenSession The maven session information.
      * @param pathTranslator The path translator component. @throws org.apache.maven.plugin.MojoExecutionException If
      *            things go wrong.
+     * @param rulesInline
      * @throws MojoExecutionException if something goes wrong.
      * @since 1.0-alpha-3
      */
@@ -200,7 +201,7 @@ public class DefaultVersionsHelper
                                   ArtifactMetadataSource artifactMetadataSource, List<ArtifactRepository> remoteArtifactRepositories,
                                   List<ArtifactRepository> remotePluginRepositories, ArtifactRepository localRepository,
                                   WagonManager wagonManager, Settings settings, String serverId, String rulesUri,
-                                  Log log, MavenSession mavenSession, PathTranslator pathTranslator )
+                                  Log log, MavenSession mavenSession, PathTranslator pathTranslator, RuleSet rulesInline )
         throws MojoExecutionException
     {
         this.artifactFactory = artifactFactory;
@@ -213,6 +214,9 @@ public class DefaultVersionsHelper
         this.remoteArtifactRepositories = remoteArtifactRepositories;
         this.remotePluginRepositories = remotePluginRepositories;
         this.log = log;
+        System.out.println("Hello world from the plugin");
+        System.out.println("Rules inline are:");
+        System.out.println(rulesInline);
     }
 
     @Deprecated

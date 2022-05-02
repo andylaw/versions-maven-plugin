@@ -42,6 +42,7 @@ import org.apache.maven.settings.Settings;
 import org.codehaus.mojo.versions.api.ArtifactVersions;
 import org.codehaus.mojo.versions.api.DefaultVersionsHelper;
 import org.codehaus.mojo.versions.api.VersionsHelper;
+import org.codehaus.mojo.versions.model.RuleSet;
 import org.codehaus.plexus.i18n.I18N;
 
 import java.io.File;
@@ -170,6 +171,14 @@ public abstract class AbstractVersionsReport
     private String rulesUri;
 
     /**
+     * Literal XML string of rules defined in the pom file configuration section.
+     *
+     * @since 1.0-alpha-3
+     */
+    @Parameter( property = "maven.version.ruleset" )
+    private RuleSet ruleset;
+
+    /**
      * The versioning rule to use when comparing versions. Valid values are <code>maven</code>, <code>numeric</code>
      * which will handle long version numbers provided all components are numeric, or <code>mercury</code> which will
      * use the mercury version number comparison rules.
@@ -218,7 +227,7 @@ public abstract class AbstractVersionsReport
                 helper = new DefaultVersionsHelper( artifactFactory, artifactResolver, artifactMetadataSource,
                                                     remoteArtifactRepositories, remotePluginRepositories,
                                                     localRepository, wagonManager, settings, serverId, rulesUri,
-                                                    getLog(), session, pathTranslator );
+                                                    getLog(), session, pathTranslator, ruleset);
             }
             catch ( MojoExecutionException e )
             {
